@@ -1,0 +1,124 @@
+<!-- Menu -->
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo py-2">
+        <a href="index.html" class="app-brand-link">
+            <span class="app-brand-logo demo">
+                
+            </span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Logo</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        <li class="menu-item active">
+            <a href="<?= base_url('') ?>" class="menu-link">
+            <div data-i18n="Analytics">Tableau de bord</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="<?= base_url('/ecriture') ?>" class="menu-link">
+            <div data-i18n="Analytics">Saisie des ecritures</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="<?= base_url('/journal') ?>" class="menu-link">
+            <div data-i18n="Analytics">Journal</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="<?= base_url('/grand_livre') ?>" class="menu-link">
+            <div data-i18n="Analytics">Grand Livre</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="<?= base_url('/balance') ?>" class="menu-link">
+            <div data-i18n="Analytics">Balance</div>
+            </a>
+        </li>
+        
+        <li class="menu-item">
+            <a href="<?= base_url('/facture') ?>" class="menu-link">
+            <div data-i18n="Analytics">Facture</div>
+            </a>
+        </li>
+
+        <!-- Layouts -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <div data-i18n="Layouts">Etat Financier</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= base_url('etat_financier/bilan_initial') ?>" class="menu-link">
+                    <div data-i18n="Analytics">Bilan inital</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= base_url('etat_financier/resultat') ?>" class="menu-link">
+                    <div data-i18n="Analytics">Resultat</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Layouts -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <div data-i18n="Layouts">Codes</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= base_url('/code/general-accounting') ?>" class="menu-link">
+                    <div data-i18n="Without menu">PCG</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= base_url('/code/chart-of-accounts') ?>" class="menu-link">
+                    <div data-i18n="Without navbar">Plan Tiers</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= base_url('/code/journal-code') ?>" class="menu-link">
+                    <div data-i18n="Container">Codes Journaux</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Layouts -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <div data-i18n="Layouts">Comptabilite analytique</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="<?= base_url('/analytique/center') ?>" class="menu-link">
+                    <div data-i18n="Without menu">Centres</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?= base_url('/analytique/product') ?>" class="menu-link">
+                    <div data-i18n="Without navbar">Produits</div>
+                    </a>
+                </li>
+                
+            </ul>
+        </li>
+    </ul>
+</aside>
+<!-- / Menu --  
