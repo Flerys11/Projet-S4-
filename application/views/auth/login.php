@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html
-  lang="en"
+  lang="fr"
   class="light-style customizer-hide"
 >
   <head>
@@ -67,7 +67,15 @@
               <h4 class="mb-2">Bienvenue!</h4>
               <p class="mb-4">Connectez-vous à votre compte s'il vous plaît</p>
 
-              <form id="formAuthentication" class="mb-3" action="<?= base_url('auth/check'); ?>" method="POST" autocomplete="off">
+              <?php if (isset($error)) : ?>
+                <div class="col-md-12">
+                  <div class="alert alert-danger" role="alert">
+                    <?= $error ?>
+                  </div>
+                </div>
+              <?php endif; ?>
+
+              <form id="formAuthentication" class="mb-3" action="<?= base_url('auth/login'); ?>" method="POST" autocomplete="off">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
@@ -75,13 +83,11 @@
                     class="form-control"
                     id="email"
                     name="email"
-                    placeholder="Entrer l'email de votre entreprise"
+                    placeholder="Entrer votre email"
                     autofocus
                     value=""
                   />
-                  <?php if(true): ?>
-                      <small class="text-danger"></small>
-                  <?php endif; ?>
+                  <?php echo form_error('email', '<small class="text-danger">', '</small>'); ?>
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
@@ -95,13 +101,13 @@
                       type="password"
                       id="password"
                       class="form-control"
-                      name="mdp"
+                      name="password"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
-                      <small class="text-danger"></small>
+                  <?php echo form_error('password', '<small class="text-danger">', '</small>'); ?>
                   
                 </div>
                 <div class="mb-3">
