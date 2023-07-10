@@ -13,7 +13,8 @@ CREATE TABLE users (
     created_at datetime NOT NULL,
     is_admin tinyint NOT NULL DEFAULT '0',
     taille int,
-    poids numeric(6,3)
+    poids numeric(6,3),
+    wallet numeric(10,2) default 0
 );
 
 CREATE TABLE histo_morphology (
@@ -33,12 +34,6 @@ CREATE TABLE codes (
     codes varchar(255) NOT NULL,
     id_valeur int references valeur(id),
     is_valide int NOT NULL DEFAULT 1
-);
-
-CREATE TABLE wallet (
-    id int PRIMARY KEY AUTO_INCREMENT,
-    id_users int REFERENCES users(id),
-    money numeric(8,2) 
 );
 
 CREATE TABLE histo_wallet (
@@ -118,11 +113,11 @@ INSERT INTO genre VALUES
     (null, 'Femme');
 
 INSERT INTO users VALUES 
-    (null, 'Rakoto', 'rakoto@gmail.com', 1, '12345', 'default.jpg', '2023-07-02 12:05:01', 1, null, null),
-    (null, 'Rabe', 'rabe@gmail.com', 1, '56789', 'default.jpg', '2023-07-04 09:00:01', 0, 163, '80.400'),
-    (null, 'Rasoa', 'rasoa@gmail.com', 2, '54321', 'default.jpg', '2023-07-05 14:25:30', 0, 160, '65.100'),
-    (null, 'Rose', 'rose@gmail.com', 2, '98765', 'default.jpg', '2023-07-10 22:00:45', 0, 158, '70'),
-    (null, 'Randri', 'rose@gmail.com', 1, '02580', 'default.jpg', '2023-07-10 12:20:45', 0, 170, '75.900');
+    (null, 'Rakoto', 'rakoto@gmail.com', 1, '12345', 'default.jpg', '2023-07-02 12:05:01', 1, null, null,5000),
+    (null, 'Rabe', 'rabe@gmail.com', 1, '56789', 'default.jpg', '2023-07-04 09:00:01', 0, 163, '80.400',10000),
+    (null, 'Rasoa', 'rasoa@gmail.com', 2, '54321', 'default.jpg', '2023-07-05 14:25:30', 0, 160, '65.100',9000),
+    (null, 'Rose', 'rose@gmail.com', 2, '98765', 'default.jpg', '2023-07-10 22:00:45', 0, 158, '70',15000),
+    (null, 'Randri', 'rose@gmail.com', 1, '02580', 'default.jpg', '2023-07-10 12:20:45', 0, 170, '75.900',25000);
 
 INSERT INTO valeur VALUES
     (null, '100'),

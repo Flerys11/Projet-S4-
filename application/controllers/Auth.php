@@ -93,8 +93,13 @@ class Auth extends CI_Controller {
 				$_SESSION['user_id']      = (int)$user->id;
 				$_SESSION['username']     = (string)$user->username;
 				$_SESSION['email']        = (string)$user->email;
+				$_SESSION['avatar']       = (string)$user->avatar;
 				$_SESSION['logged_in']    = (bool)true;
 				$_SESSION['is_admin']     = (bool)$user->is_admin;
+				$_SESSION['poids']        = (float)$user->poids;
+				$_SESSION['taille']       = (int)$user->taille;
+				$_SESSION['wallet']       = (float)$user->wallet;
+
 				// user login ok
 				// $this->index();
 				
