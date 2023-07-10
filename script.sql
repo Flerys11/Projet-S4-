@@ -117,7 +117,7 @@ INSERT INTO users VALUES
     (null, 'Rabe', 'rabe@gmail.com', 1, '56789', 'default.jpg', '2023-07-04 09:00:01', 0, 163, '80.400',10000),
     (null, 'Rasoa', 'rasoa@gmail.com', 2, '54321', 'default.jpg', '2023-07-05 14:25:30', 0, 160, '65.100',9000),
     (null, 'Rose', 'rose@gmail.com', 2, '98765', 'default.jpg', '2023-07-10 22:00:45', 0, 158, '70',15000),
-    (null, 'Randri', 'rose@gmail.com', 1, '02580', 'default.jpg', '2023-07-10 12:20:45', 0, 170, '75.900',25000);
+    (null, 'Randri', 'randria@gmail.com', 1, '02580', 'default.jpg', '2023-07-10 12:20:45', 0, 170, '75.900',25000);
 
 INSERT INTO valeur VALUES
     (null, '100'),
@@ -145,10 +145,6 @@ INSERT INTO codes VALUES
     (null, '8024671359', 6, 1),
     (null, '6940281357', 7, 1),
     (null, '5719203846', 8, 1);
-
-INSERT INTO wallet VALUES
-    (null, 3, '10000'),
-    (null, 3, '1000');
 
 INSERT INTO regime_type VALUES
     (null, 'Reduire son poids'),
