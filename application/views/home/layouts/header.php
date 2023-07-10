@@ -15,7 +15,7 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
         />
 
-        <title><?= $this->renderSection('title') ?></title>
+        <title></title>
 
         <meta name="description" content="" />
 
@@ -55,46 +55,7 @@
         <!-- Layout wrapper -->
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
-                <?php include "menu.php" ?>
                 <!-- Layout container -->
                 <div class="layout-page">
           
-                    <!-- Navbar -->
-                    <?php include "navbar.php" ?>
                     
-                    <!-- Content wrapper -->
-                    <div class="content-wrapper"">
-                        <?= $this->renderSection('content') ?>
-                    </div>
-                    
-                    <!-- Footer -->
-                    <?php include 'footer.php' ?>
-                </div>
-            </div>
-        </div>
-
-    </body>
-
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="<?php echo base_url('assets/vendor/libs/jquery/jquery.js')?>"></script>
-    <script src="<?php echo base_url('assets/vendor/libs/popper/popper.js')?>"></script>
-    <script src="<?php echo base_url('assets/vendor/js/bootstrap.js')?>"></script>
-    <script src="<?php echo base_url('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')?>"></script>
-
-    <script src="<?php echo base_url('assets/vendor/js/menu.js')?>"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="<?php echo base_url('assets/vendor/libs/apex-charts/apexcharts.js')?>"></script>
-
-    <!-- Main JS -->
-    <script src="<?php echo base_url('assets/js/main.js')?>"></script>
-
-    <!-- Page JS -->
-    <script src="<?php echo base_url('assets/js/dashboards-analytics.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/ui-modals.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/masonry.pkgd.min.js')?>"></script>
-</html>
-
