@@ -85,7 +85,7 @@
                     name="email"
                     placeholder="Entrer votre email"
                     autofocus
-                    value="dylan@gmail.com"
+                    value="rabe@gmail.com"
                   />
                   <?php echo form_error('email', '<small class="text-danger">', '</small>'); ?>
                 </div>
@@ -104,7 +104,7 @@
                       name="password"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
-                      value="12345"
+                      value="56789"
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
