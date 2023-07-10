@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+session_start();
 
 class Auth extends CI_Controller {
 
 	public function __construct() {
 		
 		parent::__construct();
-		$this->load->library(array('session'));
 		$this->load->helper(array('url'));
 		$this->load->model('userModel');
 		
@@ -15,18 +15,15 @@ class Auth extends CI_Controller {
 	
 	public function index() {
 		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-			echo 'hhah';
 			$data = array(
 				'title' => 'Page d\'accueil',
 				'header' => $this->load->view('home/layouts/header', '', true),
 				'navbar' => $this->load->view('home/layouts/navbar', '', true),
 				'footer' => $this->load->view('home/layouts/footer', '', true)
 			);
-			$this->load->view('home/accueil');
+			$this->load->view('home/accueil', $data);
 		} else {
-			// redirect('auth/login');
-			echo "hihi";
-			$this->load->view('auth/login');
+			redirect('auth/login');
 		}
 	}
 
