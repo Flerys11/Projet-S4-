@@ -64,48 +64,36 @@ create table plat (
 
 create table sport (
     id int primary key auto_increment,
-    id_type int references regime_type(id),
+    id_type_regime int references regime_type(id),
     nom varchar(255) not null
 );
 
-create table regime_aliment(
+create table periode_regime (
     id int primary key auto_increment,
-    id_user int references users(id) 
-);
-
-create table details_aliments(
-    id int primary key auto_increment,
-    id_regime_aliment int references regime_aliment(id),
-    id_plat int references plat(id),
-    poids numeric(6,2) not null
-);
-
-create table regime_sportif(
-    id int primary key auto_increment,
-    id_user int references users(id) 
-);
-
-create table details_sportif(
-    id int primary key auto_increment,
-    id_regime_sportif int references regime_sportif(id),
-    id_sport int references sport(id),
-    duree numeric(5,2)
+    id_user int references users(id),
+    id_type int references regime_type(id),
+    poids_objectif numeric(8,2),
+    date_debut date not null,
+    date_fin date not null
 );
 
 create table regime(
     id int primary key auto_increment,
-    id_plat int references regime_aliment(id),
-    id_sport int references regime_sportif(id),
-    poids int not null,
-    date_regime date not null
+    id_periode_regime int references periode_regime(id)
 );
 
-create table histo_regime (
+create table details_aliments(
     id int primary key auto_increment,
-    id_user int references users(id),
     id_regime int references regime(id),
-    date_debut date not null,
-    date_fin date not null
+    id_plat int references plat(id),
+    poids numeric(6,2) not null
+);
+
+create table details_sportif(
+    id int primary key auto_increment,
+    id_regime int references regime(id),
+    id_sport int references sport(id),
+    duree numeric(5,2)
 );
 
 INSERT INTO genre VALUES 
