@@ -19,6 +19,17 @@ class UserModel extends CI_Model {
 		
 		return $this->db->insert('users', $data);
 	}
+
+	public function update_user($form_data, $id_user){
+		$data = array(
+			'username' => $form_data['nom'],
+			'email' => $form_data['email'],
+			'taille' => $form_data['taille'],
+			'poids' => $form_data['poids']
+		);
+		$this->db->where('id', $id_user);
+		$this->db->update('users', $data);
+	}
 	
 	public function resolve_user_login($email, $password) {
 		$this->db->select('id');
@@ -44,6 +55,12 @@ class UserModel extends CI_Model {
 	public function get_user($user_id) {
 		$this->db->from('users');
 		$this->db->where('id', $user_id);
+		return $this->db->get()->row();
+	}
+
+	public function get_genre($id_genre) {
+		$this->db->from('genre');
+		$this->db->where('id', $id_genre);
 		return $this->db->get()->row();
 	}
 	

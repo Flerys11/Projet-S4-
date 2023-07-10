@@ -82,6 +82,8 @@ class Auth extends CI_Controller {
 				
 				$user_id = $this->userModel->get_user_id_from_email($email);
 				$user    = $this->userModel->get_user($user_id);
+				$id_genre= (int)$user->id_genre;
+				$genre   = $this->userModel->get_genre($id_genre);
 				
 				// set session user datas
 				$_SESSION['user_id']      = (int)$user->id;
@@ -93,6 +95,7 @@ class Auth extends CI_Controller {
 				$_SESSION['poids']        = (float)$user->poids;
 				$_SESSION['taille']       = (int)$user->taille;
 				$_SESSION['wallet']       = (float)$user->wallet;
+				$_SESSION['genre']        = (string)$genre->genre;
 
 				// user login ok
 				redirect('/');

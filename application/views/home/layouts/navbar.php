@@ -19,13 +19,9 @@
             <!-- Search -->
             <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                    <i class="bx bx-search fs-4 lh-0"></i>
-                    <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."
-                    />
+                <button type="button" class="btn btn-outline-primary">
+                <i class="bx bx-wallet"></i>&nbsp; Faire un depot
+                </button>
                 </div>
             </div>
             <!-- /Search -->
@@ -33,21 +29,21 @@
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                <div class="avatar">
-                    <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                <div class="avatar d-flex align-items-center">
+                    <i class='bx bxs-user-circle' style='color:#5f61e6; font-size: 32px'></i>
                 </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <a class="dropdown-item" href="<?= base_url('/') ?>">
+                    <a class="dropdown-item" href="<?= base_url('/user/profil') ?>">
                     <div class="d-flex">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                                <img src="" alt class="w-px-40 h-auto rounded-circle" />
+                                <i class='bx bxs-user-circle' style='color:#5f61e6; font-size: 38px'></i>
                             </div>
                             </div>
                             <div class="flex-grow-1">
-                            <span class="fw-semibold d-block text-uppercase"><</span>
+                            <span class="fw-semibold d-block text-uppercase"><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''?></span>
                         </div>
                     </div>
                     </a>
@@ -56,7 +52,7 @@
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="<?= base_url('home/profile') ?>">
+                    <a class="dropdown-item" href="<?= base_url('user/profil') ?>">
                     <i class="bx bx-user me-2"></i>
                     <span class="align-middle">Profile</span>
                     </a>
