@@ -14,7 +14,7 @@
             href=""
             target="_blank"
             class="footer-link me-4"
-            >PHP & CodeIgniter4</a
+            >PHP & CodeIgniter3</a
             >
 
             <a
@@ -26,3 +26,4 @@
         </div>
     </div>
 </footer>
+</div>

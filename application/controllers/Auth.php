@@ -14,7 +14,20 @@ class Auth extends CI_Controller {
 	
 	
 	public function index() {
-		$this->login();
+		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+			echo 'hhah';
+			$data = array(
+				'title' => 'Page d\'accueil',
+				'header' => $this->load->view('home/layouts/header', '', true),
+				'navbar' => $this->load->view('home/layouts/navbar', '', true),
+				'footer' => $this->load->view('home/layouts/footer', '', true)
+			);
+			$this->load->view('home/accueil');
+		} else {
+			// redirect('auth/login');
+			echo "hihi";
+			$this->load->view('auth/login');
+		}
 	}
 
 	public function register() {
@@ -84,11 +97,9 @@ class Auth extends CI_Controller {
 				$_SESSION['username']     = (string)$user->username;
 				$_SESSION['email']        = (string)$user->email;
 				$_SESSION['logged_in']    = (bool)true;
-				$_SESSION['is_confirmed'] = (bool)$user->is_confirmed;
 				$_SESSION['is_admin']     = (bool)$user->is_admin;
-				
 				// user login ok
-				$this->load->view('home/accueil');
+				// $this->index();
 				
 			} else {
 				// login failed
@@ -107,14 +118,20 @@ class Auth extends CI_Controller {
 		$data = new stdClass();
 		
 		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-			foreach ($_SESSION as $key => $value) {
-				unset($_SESSION[$key]);
-			}
+			$this->deleteSession();
 			redirect('/');
 		} else {
 			redirect('/');
 		}
 		
+	}
+
+	private function deleteSession(){
+		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+			foreach ($_SESSION as $key => $value) {
+				unset($_SESSION[$key]);
+			}
+		}
 	}
 	
 }

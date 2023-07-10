@@ -13,7 +13,7 @@ class UserModel extends CI_Model {
 		$data = array(
 			'username'   => $username,
 			'email'      => $email,
-			'password'   => $this->hash_password($password),
+			'password'   => $password,
 			'created_at' => date('Y-m-j H:i:s'),
 		);
 		
@@ -21,12 +21,15 @@ class UserModel extends CI_Model {
 	}
 	
 	public function resolve_user_login($email, $password) {
-		$this->db->select('password');
+		$this->db->select('id');
 		$this->db->from('users');
 		$this->db->where('email', $email);
-		$hash = $this->db->get()->row('password');
-		
-		return $this->verify_password_hash($password, $hash);
+		$this->db->where('password', $password);
+		$id = $this->db->get()->row('id');
+		if (!empty($id)) {
+			return true;
+		}
+		return false;
 	}
 
 	public function get_user_id_from_email($email) {
@@ -50,6 +53,16 @@ class UserModel extends CI_Model {
 	
 	private function verify_password_hash($password, $hash) {
 		return password_verify($password, $hash);
+	}
+
+	public function is_admin($id){
+		$this->db->from('users');
+		$this->db->where('id', $id);
+		$user = $this->db->get()->row();
+		if ($user->is_admin == 1) {
+			return true;
+		}
+		return false;
 	}
 	
 }

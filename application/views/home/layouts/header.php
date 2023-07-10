@@ -55,7 +55,6 @@
         <!-- Layout wrapper -->
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
-                <?php include "menu.php" ?>
                 <!-- Layout container -->
                 <div class="layout-page">
           
@@ -63,8 +62,8 @@
                     <?php include "navbar.php" ?>
                     
                     <!-- Content wrapper -->
-                    <div class="content-wrapper"">
-                        <?= $this->renderSection('content') ?>
+                    <div class="content-wrapper">
+                    
                     </div>
                     
                     <!-- Footer -->
@@ -97,4 +96,3 @@
     <script src="<?php echo base_url('assets/js/ui-modals.js')?>"></script>
     <script src="<?php echo base_url('assets/js/masonry.pkgd.min.js')?>"></script>
 </html>
-
