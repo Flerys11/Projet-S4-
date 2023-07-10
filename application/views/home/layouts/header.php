@@ -58,4 +58,5 @@
                 <!-- Layout container -->
                 <div class="layout-page">
           
-                    
+                    <!-- Navbar -->
+                    <?php require 'navbar.php' ?>

@@ -15,13 +15,7 @@ class Auth extends CI_Controller {
 	
 	public function index() {
 		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-			$data = array(
-				'title' => 'Page d\'accueil',
-				'header' => $this->load->view('home/layouts/header', '', true),
-				'navbar' => $this->load->view('home/layouts/navbar', '', true),
-				'footer' => $this->load->view('home/layouts/footer', '', true)
-			);
-			$this->load->view('home/accueil', $data);
+			$this->load->view('home/accueil');
 		} else {
 			redirect('auth/login');
 		}
@@ -101,7 +95,7 @@ class Auth extends CI_Controller {
 				$_SESSION['wallet']       = (float)$user->wallet;
 
 				// user login ok
-				// $this->index();
+				redirect('/');
 				
 			} else {
 				// login failed

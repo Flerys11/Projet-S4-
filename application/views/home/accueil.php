@@ -1,5 +1,6 @@
-<?php echo $header ?>
-<?php echo $header ?>
+<?php require 'layouts/header.php'; ?>               
+    <!-- Content wrapper -->
     <div class="content-wrapper">
-        accueil
+        Accueil
     </div>
+<?php require 'layouts/footer.php'; ?>
