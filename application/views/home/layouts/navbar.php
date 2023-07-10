@@ -19,9 +19,11 @@
             <!-- Search -->
             <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                <button type="button" class="btn btn-outline-primary">
-                <i class="bx bx-wallet"></i>&nbsp; Faire un depot
-                </button>
+                    <form action="<?= base_url('/user/wallet') ?>" >
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="bx bx-wallet"></i>&nbsp; Faire un depot
+                        </button>
+                    </form>
                 </div>
             </div>
             <!-- /Search -->

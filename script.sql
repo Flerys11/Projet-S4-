@@ -19,8 +19,9 @@ CREATE TABLE users (
 
 CREATE TABLE histo_morphology (
     id int PRIMARY KEY AUTO_INCREMENT,
-    id_users int REFERENCES users(id),
-    poids int NOT NULL,
+    id_user int REFERENCES users(id),
+    taille int NOT NULL,
+    poids numeric(6,3) NOT NULL,
     updated_at datetime NOT NULL
 );
 
@@ -36,11 +37,11 @@ CREATE TABLE codes (
     is_valide int NOT NULL DEFAULT 1
 );
 
-CREATE TABLE histo_wallet (
+CREATE TABLE validation_codes(
     id int PRIMARY KEY AUTO_INCREMENT,
-    id_users int REFERENCES users(id),
-    money int NOT NULL,
-    updated_at datetime NOT NULL
+    id_code int references codes(id),
+    id_user int REFERENCES users(id),
+    is_valide int NOT NULL DEFAULT 0
 );
 
 create table regime_type(

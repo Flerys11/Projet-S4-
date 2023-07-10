@@ -30,5 +30,9 @@ class User extends CI_Controller {
         $_SESSION['taille']       = (int)$user->taille;
         $this->load->view('home/profil');
     }
+
+    public function wallet(){
+        $this->load->view('home/wallet');
+    }
 }
 ?>
