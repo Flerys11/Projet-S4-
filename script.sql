@@ -20,7 +20,6 @@ CREATE TABLE users (
 CREATE TABLE histo_morphology (
     id int PRIMARY KEY AUTO_INCREMENT,
     id_user int REFERENCES users(id),
-    taille int NOT NULL,
     poids numeric(6,3) NOT NULL,
     updated_at datetime NOT NULL
 );
@@ -49,14 +48,8 @@ create table regime_type(
     type varchar(255) 
 );
 
-create table type_plat (
-    id int primary key auto_increment,
-    type varchar(255) 
-);
-
 create table plat (
     id int primary key auto_increment,
-    id_type_plat int references type_plat(id),
     id_type_regime int references regime_type(id),
     nom varchar(255),
     ingredients text not null, 
@@ -139,29 +132,29 @@ INSERT INTO regime_type VALUES
     (null, 'Reduire son poids'),
     (null, 'Augmenter son poids');
 
-INSERT INTO type_plat VALUES
-    (null, 'Petit-Dejeuner'),
-    (null, 'Dejeuner'),
-    (null, 'Diner');
-
 INSERT INTO plat VALUES
-    (null, 1, 1,'Delice matinale', 'Thé vert, Fromage blanc au muesli et compote de fruits maison', '8000'),
-    (null, 2, 1, 'Fraîcheur croquante', 'Rouleaux de printemps crevettes et pomme verte, Salade de pousses de soja, Fruit de saison', '15000'),
-    (null, 3, 1, 'Parmentier gourmand et salade fraîcheur', 'Hachis parmentier à la courge et au poulet, Salade, Fromage blanc', '5000'),
-    (null, 1, 1, 'Délice protéiné', 'Café sans sucre, Oeufs brouillés au fromage frais et toast de pain complet', '7000'),
-    (null, 2, 1, 'Crunchy saveurs', 'Salade de carottes, Poulet aux olives et citron confit, Semoule, Fruit de saison', '10000'),
-    (null, 3, 1, 'Exotisme végétarien aux notes croquantes', 'Sauté de tofu aux noix de cajou et haricots plats, Riz brun, Fromage frais, Fruit frais', '7000'),
-    (null, 1, 2, 'Sandwich confiture et beurre de cacahuète', '2 tranches de pain de mie, 2 cuillères à café de beurre de cacahuète, 2 cuillères à café de confiture de fruits rouges', '7000'),
-    (null, 2, 2, 'Risotto au pesto et petits pois', 'Petits pois, riz à grains ronds, pesto, beurre, oignon, bouillon de volaille, quelques feuilles de basilic', '25000'),
-    (null, 3, 2, 'Pain équilibré aux olives', 'Farine, olives noires dénoyautées, levure fraîche, huile olive, eau tiède, romarin, sel', '7000'),
-    (null, 1, 2, 'Biscuits « gainer » au beurre de cacahuète', 'Farine, sucre roux, beurre de cacahuètes, beurre mou, œuf, levure chimique', '9000'),
-    (null, 2, 2, 'Roulés de crêpes gain de poids en gratin poulet et béchamel', 'Poulet, gruyère râpé, farine, œufs, lait entier, beurre, noix de muscade, sel et poivre', '25000'),
-    (null, 3, 2, 'Quatre-quarts', 'Oeufs, sucre, farine, beurre, levure chimique', '10000');
+    (null, 1,'Delice matinale', 'Thé vert, Fromage blanc au muesli et compote de fruits maison', '8000'),
+    (null, 1, 'Fraîcheur croquante', 'Rouleaux de printemps crevettes et pomme verte, Salade de pousses de soja, Fruit de saison', '15000'),
+    (null, 1, 'Parmentier gourmand et salade fraîcheur', 'Hachis parmentier à la courge et au poulet, Salade, Fromage blanc', '5000'),
+    (null, 1, 'Délice protéiné', 'Café sans sucre, Oeufs brouillés au fromage frais et toast de pain complet', '7000'),
+    (null, 1, 'Crunchy saveurs', 'Salade de carottes, Poulet aux olives et citron confit, Semoule, Fruit de saison', '10000'),
+    (null, 1, 'Exotisme végétarien aux notes croquantes', 'Sauté de tofu aux noix de cajou et haricots plats, Riz brun, Fromage frais, Fruit frais', '7000'),
+    (null, 2, 'Sandwich confiture et beurre de cacahuète', '2 tranches de pain de mie, 2 cuillères à café de beurre de cacahuète, 2 cuillères à café de confiture de fruits rouges', '7000'),
+    (null, 2, 'Risotto au pesto et petits pois', 'Petits pois, riz à grains ronds, pesto, beurre, oignon, bouillon de volaille, quelques feuilles de basilic', '25000'),
+    (null, 2, 'Pain équilibré aux olives', 'Farine, olives noires dénoyautées, levure fraîche, huile olive, eau tiède, romarin, sel', '7000'),
+    (null, 2, 'Biscuits « gainer » au beurre de cacahuète', 'Farine, sucre roux, beurre de cacahuètes, beurre mou, œuf, levure chimique', '9000'),
+    (null, 2, 'Roulés de crêpes gain de poids en gratin poulet et béchamel', 'Poulet, gruyère râpé, farine, œufs, lait entier, beurre, noix de muscade, sel et poivre', '25000'),
+    (null, 2, 'Quatre-quarts', 'Oeufs, sucre, farine, beurre, levure chimique', '10000');
     
 INSERT INTO sport VALUES
     (null, 1, 'Course à pied'),
     (null, 1, 'Zumba'),
     (null, 1, 'Planche'),
-    (null, 1, 'Pompes'),
-    (null, 1, 'Natation');
+    (null, 1, 'Corde a sauter'),
+    (null, 1, 'Cyclisme'),
+    (null, 2, 'Pompes'),
+    (null, 2, 'Squat'),
+    (null, 2, 'Soulevé de terre'),
+    (null, 2, 'Developpé couché'),
+    (null, 2, 'Natation');
     
