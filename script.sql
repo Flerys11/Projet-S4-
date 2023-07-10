@@ -8,7 +8,7 @@ CREATE TABLE users (
     username varchar(50) NOT NULL DEFAULT '',
     email varchar(100) NOT NULL DEFAULT '',
     id_genre int REFERENCES genre(id_genre),
-    password varchar(25) NOT NULL DEFAULT '',
+    password varchar(255) NOT NULL DEFAULT '',
     avatar varchar(255) DEFAULT 'default.jpg',
     created_at datetime NOT NULL,
     is_admin tinyint NOT NULL DEFAULT '0',
@@ -54,14 +54,14 @@ create table regime_type(
     type varchar(255) 
 );
 
-create table aliments (
+create table plat (
     id int primary key auto_increment,
     nom varchar(255) not null, 
     id_type int references regime_type(id) not null,
     prix numeric(8,2) not null
 );
 
-create table sports (
+create table sport (
     id int primary key auto_increment,
     id_type int references regime_type(id) not null,
     nom varchar(255) not null
@@ -74,7 +74,7 @@ create table regime_aliment(
 create table details_aliments(
     id int primary key auto_increment,
     id_regime_aliment int references regime_aliment(id) not null,
-    id_aliments int references aliments(id) not null,
+    id_plat int references plat(id) not null,
     poids numeric(6,2) not null
 );
 
@@ -85,14 +85,14 @@ create table regime_sportif(
 create table details_sportif(
     id int primary key auto_increment,
     id_regime_sportif int references regime_sportif(id) not null,
-    id_sports int references sports(id) not null,
+    id_sport int references sport(id) not null,
     duree numeric(5,2)
 );
 
 create table regime(
     id int primary key auto_increment,
     id_user int references users(id) not null,
-    id_aliment int references regime_aliment(id) not null,
+    id_plat int references regime_aliment(id) not null,
     id_sport int references regime_sportif(id) not null,
     poids int not null,
     date_regime date not null
@@ -106,4 +106,10 @@ create table histo_regime (
     date_fin date not null
 );
 
+INSERT INTO genre VALUES 
+    (null, 'Homme'),
+    (null, 'Homme');
 
+INSERT INTO users VALUES 
+    (null, ),
+    (null, );
