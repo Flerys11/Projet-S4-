@@ -10,10 +10,40 @@ class Regime extends CI_Controller {
 		$this->load->helper(array('url'));
         $this->load->model('PlatModel');
         $this->load->model('SportModel');
+        $this->load->model('RegimeModel');
 	}
 
     public function index(){
         
+    }
+
+    public function perdre(){
+        $this->load->view('home/perdre');
+    }
+
+    public function avoir(){
+        $this->load->view('home/avoir');
+    }
+
+    public function imcideal(){
+        $this->load->model('IMCModel');
+        $this->load->model('userModel');
+        $data['type_imc'] = $this->IMCModel->getIMC();
+        $data['my_imc'] = $this->userModel->calculIMC($_SESSION['user_id']);
+        $this->load->view('home/imcideal', $data);
+    }
+
+    public function showCalendar($year = NULL , $month = NULL)
+    {
+     $prefs = array(
+           'start_day'    => 'saturday',
+           'month_type'   => 'long',
+           'day_type'     => 'short',
+           'show_next_prev' => TRUE,
+           'next_prev_url'   => base_url().'/mycal/index/'
+     );
+     $this->load->library('calendar',$prefs); // Load calender library
+     echo $this->calendar->generate($year , $month);
     }
 
     public function generate($id_type, $poids_objectif){
