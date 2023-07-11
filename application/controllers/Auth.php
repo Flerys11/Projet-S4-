@@ -9,6 +9,7 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url'));
 		$this->load->model('userModel');
+		$this->load->model('genreModel');
 		
 	}
 	
@@ -22,7 +23,8 @@ class Auth extends CI_Controller {
 	}
 
 	public function register() {
-		$data = new stdClass();
+		$data = array();
+		$data['genres'] = $this->genreModel->getAll();
 		
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -30,6 +32,7 @@ class Auth extends CI_Controller {
 		// validation rules
 		$this->form_validation->set_rules('username', 'Nom', 'trim|required|alpha_numeric|min_length[3]|is_unique[users.username]', array('is_unique' => 'Cet identifiant existe déjà. Veuillez en choisir un autre.'));
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('genre', 'Genre', 'trim|required|numeric');
 		$this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|min_length[5]');
 		$this->form_validation->set_rules('password_confirm', 'Confirmation Mot de passe', 'trim|required|min_length[5]|matches[password]');
 		
@@ -40,20 +43,55 @@ class Auth extends CI_Controller {
 		} else {
 			
 			// set variables from the form
-			$username = $this->input->post('username');
-			$email    = $this->input->post('email');
-			$password = $this->input->post('password');
+			$_SESSION['username'] = $this->input->post('username');
+			$_SESSION['email']    = $this->input->post('email');
+			$_SESSION['genre']    = $this->input->post('genre');
+			$_SESSION['password'] = $this->input->post('password');
 			
-			if ($this->userModel->create_user($username, $email, $password)) {
+			$this->load->view('auth/register2');
+			
+		}
+		
+	}
+	public function register2() {
+		$data = array();
+		
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		
+		// validation rules
+		$this->form_validation->set_rules('taille', 'Taille', 'trim|required|numeric|greater_than_equal_to[0]|less_than_equal_to[3]', array('is_unique' => 'Cet identifiant existe déjà. Veuillez en choisir un autre.'));
+		$this->form_validation->set_rules('poids', 'Poids', 'trim|required|numeric|greater_than_equal_to[0]|less_than_equal_to[300]');
+		
+		if ($this->form_validation->run() === false) {
+			// validation not ok
+			$this->load->view('auth/register2', $data);
+			
+		} else {
+			
+			// set variables from the form
+			$username = $_SESSION['username'];
+			$email = $_SESSION['email'];
+			$id_genre = $_SESSION['genre'];
+			$password = $_SESSION['password'];
+			$taille = $this->input->post('taille');
+			$poids    = $this->input->post('poids');
+
+			
+			if ($this->userModel->create_user($username, $email, $id_genre, $password, $taille, $poids)) {
+				unset($_SESSION['username']);
+				unset($_SESSION['email']);
+				unset($_SESSION['genre']);
+				unset($_SESSION['password']);
 				// user creation ok
-				$this->load->view('auth/register', $data);
+				$this->load->view('auth/login', $data);
 				
 			} else {
 				// user creation failed
 				$data->error = 'Un problème est survenu lors de la création de votre nouveau compte. Veuillez réessayer.';
 				
 				// send error to the view
-				$this->load->view('auth/register', $data);
+				$this->load->view('auth/register2', $data);
 				
 			}
 			
@@ -97,8 +135,11 @@ class Auth extends CI_Controller {
 				$_SESSION['wallet']       = (float)$user->wallet;
 				$_SESSION['genre']        = (string)$genre->genre;
 
-				// user login ok
-				redirect('/');
+				if ($_SESSION['is_admin']) {
+					redirect('/admin');
+				} else {
+					redirect('/');
+				}
 				
 			} else {
 				// login failed

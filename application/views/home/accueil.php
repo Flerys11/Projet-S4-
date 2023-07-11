@@ -26,4 +26,5 @@
             </div>
         </div>
     </div>
+    <!-- Content Wrapper -->
 <?php require 'layouts/footer.php'; ?>

@@ -61,7 +61,7 @@
               <!-- Logo -->
               <div class="app-brand justify-content-center">
                 <a href="index.html" class="app-brand-link gap-2">
-                  <span class="app-brand-text demo text-body fw-bolder">Inscription-Etape 1</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Inscription-Etape 2</span>
                 </a>
               </div>
               <!-- /Logo -->
@@ -74,61 +74,21 @@
                 </div>
               <?php endif; ?>
 
-              <form id="formAuthentication" class="mb-3" action="<?= base_url('auth/register'); ?>" method="POST" autocomplete="off"  enctype="multipart/form-data">
+              <form id="formAuthentication" class="mb-3" action="<?= base_url('auth/register2'); ?>" method="POST" autocomplete="off"  enctype="multipart/form-data">
               <div class="mb-3">
-                  <label for="username" class="form-label">Nom</label>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Entrer votre nom" autofocus value="<?= set_value('username'); ?>" />
-                  <?php echo form_error('username', '<small class="text-danger">', '</small>'); ?>
-              </div>
-              <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Entrer votre email" value="<?= set_value('email'); ?>" />
-                  <?php echo form_error('email', '<small class="text-danger">', '</small>'); ?>
+                  <label for="taille" class="form-label">Taille</label>
+                  <input type="text" class="form-control" id="taille" name="taille" placeholder="Entrer votre taille" autofocus value="<?= set_value('taille'); ?>" />
+                  <?php echo form_error('taille', '<small class="text-danger">', '</small>'); ?>
               </div>
               <div class="mb-3">
-                <label for="defaultSelect" class="form-label">Genre</label>
-                <select id="defaultSelect" class="form-select" name="genre">
-                  <?php foreach ($genres as $genre) { ?>
-                    <option value="<?php echo $genre->id ?>"><?php echo $genre->genre ?></option>
-                  <?php } ?>
-                </select>
+                  <label for="poids" class="form-label">Poids</label>
+                  <input type="text" class="form-control" id="poids" name="poids" placeholder="Entrer votre poids" autofocus value="<?= set_value('poids'); ?>" />
+                  <?php echo form_error('poids', '<small class="text-danger">', '</small>'); ?>
               </div>
-              <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password">Mot de passe</label>
-                  <div class="input-group input-group-merge">
-                      <input
-                          type="password"
-                          id="password"
-                          class="form-control"
-                          name="password"
-                          placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                          aria-describedby="password"
-                          value=""
-                      />
-                      <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                  <?php echo form_error('password', '<small class="text-danger">', '</small>'); ?>
+              <div class="d-flex">
+                <a class="btn btn-danger d-grid w-100 m-2" type="" href="<?php echo base_url('auth/register')?>">Retour</a>
+                <button class="btn btn-primary d-grid w-100 m-2" type="submit">Valider</button>
               </div>
-              <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password">Confirmer votre mot de passe</label>
-                  <div class="input-group input-group-merge">
-                      <input
-                          type="password"
-                          id="password"
-                          class="form-control"
-                          name="password_confirm"
-                          placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                          aria-describedby="password"
-                          value=""
-                      />
-                  </div>
-                  <?php echo form_error('password_confirm', '<small class="text-danger">', '</small>'); ?>
-              </div>
-
-
-                <div class="mb-3">
-                </div>
-                <button class="btn btn-primary d-grid w-100" type="submit">Suivant</button>
               </form>
 
               <p class="text-center">
