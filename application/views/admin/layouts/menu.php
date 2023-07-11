@@ -25,6 +25,8 @@
         </li>
 
         <li class="menu-item">
+            <a href="<?= base_url('/') ?>" class="menu-link">
+            <div data-i18n="Analytics">Authentification</div>
             <a href="<?= base_url('/user/wallet_user') ?>" class="menu-link">
             <div data-i18n="Analytics">Validation en attente</div>
             </a>
