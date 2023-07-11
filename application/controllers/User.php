@@ -93,7 +93,8 @@ class User extends CI_Controller {
 
     //--------------ADMIN
     public function wallet_user(){
-		$this->load->view('home/validation_wallet');
+        $data['attente'] = $this->codeModel->code_en_attente();
+		$this->load->view('home/validation_wallet', $data);
     }
 }
 ?>

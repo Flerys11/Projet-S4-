@@ -63,5 +63,17 @@ class CodeModel extends CI_Model {
 		
 		return $this->db->insert('validation_codes', $data);
     }
+
+    public function code_en_attente(){
+        $query = $this->db->select('validation_codes.*, codes.*')
+                  ->from('validation_codes')
+                  ->join('codes', 'validation_codes.id_code = codes.id')
+                  ->where('validation_codes.is_valide', 0)
+                  ->where('codes.is_valide', 1)
+                  ->get();
+
+        $results = $query->result();
+        return $result;
+    }
 }
 ?>
