@@ -33,18 +33,18 @@
         <!-- Layouts -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Layouts">TruTruc</div>
+            <div data-i18n="Layouts">Getion des tâches</div>
             </a>
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="<?= base_url('') ?>" class="menu-link">
-                    <div data-i18n="Analytics">Truc1</div>
+                    <a href="<?php echo base_url('User/list_user'); ?>" class="menu-link">
+                    <div data-i18n="Analytics">Utilisateur</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="<?= base_url('') ?>" class="menu-link">
-                    <div data-i18n="Analytics">Truc2</div>
+                    <a href="<?php echo base_url('Aliment/get_aliment'); ?>" class="menu-link">
+                    <div data-i18n="Analytics">Aliment</div>
                     </a>
                 </li>
             </ul>
