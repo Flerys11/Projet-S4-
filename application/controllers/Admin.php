@@ -30,4 +30,8 @@ class Admin extends CI_Controller {
 	public function get_list_user() {
 		$this->load->view('admin/liste_user');
 	}
+
+    // public function dashboard(){
+	// 	$this->load->view('admin/liste_user');
+    // }
 }

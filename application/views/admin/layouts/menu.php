@@ -19,7 +19,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item active">
-            <a href="<?= base_url('/admin/dashboard') ?>" class="menu-link">
+            <a href="<?= base_url('/admin') ?>" class="menu-link">
             <div data-i18n="Analytics">Tableau de bord</div>
             </a>
         </li>
