@@ -50,13 +50,6 @@ create table imc(
     indice_fin numeric(6,2)
 );
 
-INSERT INTO imc values
-    (null, 'Maigreur', 0, 18.5),
-    (null, 'Normal', 18.5, 25),
-    (null, 'Surpoids', 25, 30),
-    (null, 'Obesite moderee', 30, 40),
-    (null, 'obesite severe', 40, 1000);
-
 create table regime_type(
     id int primary key auto_increment,
     type varchar(255) 
@@ -102,6 +95,18 @@ create table details_sportif(
     id_regime int references regime(id),
     id_sport int references sport(id),
     duree numeric(5,2)
+);
+
+create table type_viande(
+    id int primary key auto_increment,
+    nom varchar(50)
+);
+
+create table pourcentage_viande(
+    id int primary key auto_increment,
+    id_viande int references type_viande(id),
+    id_plat int references plat(id),
+    poucentage numeric(5,2) default 0
 );
 
 INSERT INTO genre VALUES 
@@ -160,6 +165,32 @@ INSERT INTO plat VALUES
     (null, 2, 'Roulés de crêpes gain de poids en gratin poulet et béchamel', 'Poulet, gruyère râpé, farine, œufs, lait entier, beurre, noix de muscade, sel et poivre', '25000'),
     (null, 2, 'Quatre-quarts', 'Oeufs, sucre, farine, beurre, levure chimique', '10000');
     
+INSERT INTO imc values
+    (null, 'Maigreur', 0, 18.5),
+    (null, 'Normal', 18.5, 25),
+    (null, 'Surpoids', 25, 30),
+    (null, 'Obesite moderee', 30, 40),
+    (null, 'obesite severe', 40, 1000);
+
+INSERT INTO type_viande VALUES 
+    (null, 'Viande'),
+    (null, 'Poisson'),
+    (null, 'Volaille');
+
+INSERT INTO pourcentage_viande VALUES
+    (null, 1, 1, 0),
+    (null, 2, 2, 10),
+    (null, 3, 3, 25),
+    (null, 1, 4, 0),
+    (null, 3, 5, 35),
+    (null, 1, 6, 0),
+    (null, 1, 7, 0),
+    (null, 3, 8, 50),
+    (null, 1, 9, 0),
+    (null, 1, 10, 0),
+    (null, 3, 11, 60),
+    (null, 1, 12, 0);
+
 INSERT INTO sport VALUES
     (null, 1, 'Course à pied'),
     (null, 1, 'Zumba'),
