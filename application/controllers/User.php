@@ -123,5 +123,13 @@ class User extends CI_Controller {
         $this->codeModel->transaction_validation($id_user, $id_code, $valeur);
         $this->wallet_user();
     }
+
+    public function refus_admin(){
+        if (isset($_GET['indice_valid_code'])) {
+            $indice_valid_code = $_GET['indice_valid_code'];
+            $this->codeModel->delete_validation_code($indice_valid_code);
+        }
+        $this->wallet_user();
+    }
 }
 ?>

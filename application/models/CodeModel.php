@@ -67,7 +67,7 @@ class CodeModel extends CI_Model {
 
     //---------ADMIN
     public function code_en_attente(){
-        $query = $this->db->select('validation_codes.*, codes.*')
+        $query = $this->db->select('validation_codes.id as id_val, validation_codes.*, codes.*')
                   ->from('validation_codes')
                   ->join('codes', 'validation_codes.id_code = codes.id')
                   ->where('validation_codes.is_valide', 0)
@@ -76,6 +76,16 @@ class CodeModel extends CI_Model {
 
         $results = $query->result();
         return $results;
+    }
+
+    public function get_refus_code(){
+		$query = $this->db->get('refus_codes');
+        $result = $query->result();
+        $rep = array();
+        foreach($result as $row){
+            $rep[] = $row->id_validation_codes;
+        }
+        return $rep;
     }
 
     public function get_user_wallet($id_user){
@@ -131,6 +141,11 @@ class CodeModel extends CI_Model {
             $this->db->trans_rollback(); // Annuler la transaction en cas d'erreur
             return false;
         }
+    }
+
+    public function delete_validation_code($indice_valid_code){
+        $this->db->where('id', $indice_valid_code);
+        $this->db->delete('validation_codes');
     }
 }
 ?>
