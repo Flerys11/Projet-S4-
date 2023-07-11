@@ -9,6 +9,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url'));
 		$this->load->model('userModel');
+        $this->load->model('UsersAdmin');
 		$this->load->model('codeModel');
 		
 	}
@@ -95,5 +96,40 @@ class User extends CI_Controller {
     public function wallet_user(){
 		$this->load->view('home/validation_wallet');
     }
+
+    public function list_user(){
+        $data['data'] = $this->UsersAdmin->get_list_user();
+        $this->load->view('admin/utilisateur/liste',$data);
+    }
+
+	public function delete_user(){
+		$id = $_GET['id'];
+		$this->UsersAdmin->deleteUser($id);
+		redirect('Users/list_user');
+    }
+
+	public function updateUser(){
+		$id = $_GET['id'];
+		$data['data'] = $this->UsersAdmin->get_list($id);
+		$this->load->view('admin/utilisateur/update',$data);
+	}
+
+	public function traitement_update(){
+		$id = $_GET['id'];
+
+		// $a = $this->input->post('username');
+		// $b = $this->input->post('email');
+		// $c = $this->input->post('taille');
+		// $d = $this->input->post('poids');
+		// var_dump($id,$a,$b,$c,$d);
+		$data = array(
+			'username' => $this->input->post('username'),
+			'email' => $this->input->post('email'),
+			'taille' => $this->input->post('taille'),
+			'poids' => $this->input->post('poids')
+	);
+	$this->UsersAdmin->update_user($data,$id);
+	redirect('Users/list_user');
+	}
 }
 ?>
