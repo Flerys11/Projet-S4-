@@ -19,14 +19,14 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item active">
-            <a href="<?= base_url('') ?>" class="menu-link">
+            <a href="<?= base_url('/admin/dashboard') ?>" class="menu-link">
             <div data-i18n="Analytics">Tableau de bord</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="<?= base_url('/') ?>" class="menu-link">
-            <div data-i18n="Analytics">Truc</div>
+            <a href="<?= base_url('/user/wallet_user') ?>" class="menu-link">
+            <div data-i18n="Analytics">Validation en attente</div>
             </a>
         </li>
 

@@ -4,11 +4,8 @@
         <div class=" container-xxl flex-grow-1 container-p-y">
             <div class="d-flex flex-column justify-content-between align-items-baseline h-100">
                 <div class="d-flex justify-content-between w-100 mb-4">
-                    <h4 class="fw-bold">Accueil</h4>
                     <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Nouveau regime
-                        </button>
+                        
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
                             <a class="dropdown-item" href="javascript:void(0);">Perdre du poids</a>
                             <a class="dropdown-item" href="javascript:void(0);">Avoir du poids</a>

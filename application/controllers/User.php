@@ -92,12 +92,12 @@ class User extends CI_Controller {
         $this->load->view('home/wallet', $data);
     }
 
-    //--------------ADMIN
+    //--------------ADMIN--------------------
     public function wallet_user(){
         $wallet_user = $this->codeModel->code_en_attente();
         $count_walletEnAttente = count($wallet_user);
         if ($count_walletEnAttente == 0) {
-            $this->load->view('home/null_validation');
+            $this->load->view('admin/null_validation');
         } else{
             foreach ($wallet_user as $wallet) {
                 $data['attente'][] = $wallet;
@@ -105,7 +105,7 @@ class User extends CI_Controller {
                 $valeur = $this->codeModel->get_valeur($wallet->id_valeur);
                 $data['valeur'][] = $valeur->valeur;
             }
-            $this->load->view('home/validation_wallet', $data);
+            $this->load->view('admin/validation_wallet', $data);
         }
         
     }
