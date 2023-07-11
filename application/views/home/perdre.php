@@ -18,9 +18,24 @@
                 </div>
 
                 <div class="card w-100 h-100 d-flex justify-content-center align-items-center">
-                    <div class="table-responsive text-nowrap d-flex flex-column">
-                        <div class="d-flex">
-                            <h2 class="text-muted">Auccun regime pour le moment.</h2>
+                    <div class="d-flex">
+                        <div class="modal-dialog">
+                            <form class="modal-content" method="POST" >
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalTopTitle">Perdre du poids</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label for="nameSlideTop" class="form-label">Poids objectifs</label>
+                                        <input type="text" id="nameSlideTop" class="form-control" placeholder="Entrer un poids">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Generer un regime</button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
