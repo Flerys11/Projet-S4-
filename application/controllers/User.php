@@ -93,8 +93,35 @@ class User extends CI_Controller {
 
     //--------------ADMIN
     public function wallet_user(){
-        $data['attente'] = $this->codeModel->code_en_attente();
-		$this->load->view('home/validation_wallet', $data);
+        $wallet_user = $this->codeModel->code_en_attente();
+        $count_walletEnAttente = count($wallet_user);
+        if ($count_walletEnAttente == 0) {
+            $this->load->view('home/null_validation');
+        } else{
+            foreach ($wallet_user as $wallet) {
+                $data['attente'][] = $wallet;
+                $data['username'][] = $this->codeModel->get_user_wallet($wallet->id_user);
+                $valeur = $this->codeModel->get_valeur($wallet->id_valeur);
+                $data['valeur'][] = $valeur->valeur;
+            }
+            $this->load->view('home/validation_wallet', $data);
+        }
+        
+    }
+
+    public function validation_admin(){
+        $wallet_user = $this->codeModel->code_en_attente();
+        if (isset($_GET['id_user'])) {
+            $id_user = $_GET['id_user'];
+        }
+        if (isset($_GET['id_code'])) {
+            $id_code = $_GET['id_code'];
+        }
+        if (isset($_GET['valeur'])) {
+            $valeur = $_GET['valeur'];
+        }
+        $this->codeModel->transaction_validation($id_user, $id_code, $valeur);
+        $this->wallet_user();
     }
 }
 ?>

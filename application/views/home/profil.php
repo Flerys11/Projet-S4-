@@ -78,30 +78,11 @@
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
                         <i class='bx bxs-user-circle' style='color:#5f61e6; font-size: 70px'></i>
                         <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload new photo</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              accept="image/png, image/jpeg"
-                            />
-                          </label>
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Faire un depot</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              accept="image/png, image/jpeg"
-                            />
-                          </label>
-
-                          <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                          <form action="<?= base_url('/user/wallet') ?>" >
+                            <button type="submit" class="btn btn-outline-primary">
+                                <i class="bx bx-wallet"></i>&nbsp; Faire un depot
+                            </button>
+                        </form>
                         </div>
                       </div>
                     </div>

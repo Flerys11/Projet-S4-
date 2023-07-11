@@ -6,6 +6,7 @@ class CodeModel extends CI_Model {
 		
 		parent::__construct();
 		$this->load->database();
+		$this->load->model('userModel');
 		
 	}
 
@@ -46,8 +47,8 @@ class CodeModel extends CI_Model {
         $result = $this->db->get()->num_rows();
     
         return $result;
-    }   
-
+    }  
+    
     public function get_id_by_codes($codes){
         $this->db->select('id');
         $this->db->from('codes');
@@ -64,6 +65,7 @@ class CodeModel extends CI_Model {
 		return $this->db->insert('validation_codes', $data);
     }
 
+    //---------ADMIN
     public function code_en_attente(){
         $query = $this->db->select('validation_codes.*, codes.*')
                   ->from('validation_codes')
@@ -73,7 +75,62 @@ class CodeModel extends CI_Model {
                   ->get();
 
         $results = $query->result();
+        return $results;
+    }
+
+    public function get_user_wallet($id_user){
+        $this->db->from('users');
+        $this->db->where('id', $id_user);
+        $result = $this->db->get()->row();
+    
         return $result;
+    }
+
+    public function transaction_validation($id_user, $id_code, $valeur){
+        $this->db->trans_start(); // Début de la transaction
+        try {
+            // Étape 1 : Effectuer les opérations nécessaires
+            //Valider zany le depot anle user selectionner
+            $data = array(
+                'is_valide' => 1
+            );
+            $this->db->where('id_user', $id_user);
+            $this->db->where('id_code', $id_code);
+            $this->db->update('validation_codes', $data);
+            
+            //D lasa tsy valide tsony zany iny code efa novalideny iny
+            $data = array(
+                'is_valide' => 0
+            );
+            $this->db->where('id', $id_code);
+            $this->db->update('codes', $data);
+
+            $user = $this->userModel->get_user($id_user);
+            $wallet = $user->wallet;
+            $new_wallet = $wallet + $valeur;
+            $data = array(
+                'wallet' => $new_wallet
+            );
+            $this->db->where('id', $id_user);
+            $this->db->update('users', $data);
+
+            $users = $this->userModel->get_user($id_user);
+			$_SESSION['wallet'] = $users->wallet;
+
+            // Étape 2 : Vérifier si tout s'est bien passé
+            $transaction_status = $this->db->trans_status();
+            
+            if ($transaction_status === FALSE) {
+                $this->db->trans_rollback(); // Annuler la transaction
+                return false;
+            } else {
+                $this->db->trans_commit(); // Valider la transaction
+                return true;
+            }
+        } catch (Exception $e) {
+            $this->db->trans_rollback(); // Annuler la transaction en cas d'erreur
+            return false;
+        }
     }
 }
 ?>
