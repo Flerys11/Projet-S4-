@@ -9,11 +9,14 @@ class UserModel extends CI_Model {
 		
 	}
 	
-	public function create_user($username, $email, $password) {
+	public function create_user($username, $email, $id_genre, $password, $taille, $poids) {
 		$data = array(
 			'username'   => $username,
 			'email'      => $email,
+			'id_genre' => $id_genre,
 			'password'   => $password,
+			'taille' => $taille,
+			'poids' => $poids,
 			'created_at' => date('Y-m-j H:i:s'),
 		);
 		

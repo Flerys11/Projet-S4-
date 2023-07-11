@@ -8,10 +8,10 @@
         </a>
     </div>
 
-    <div class="d-flex align-items-center justify-content-between w-100" id="navbar-collapse">
+    <div class="h-100 d-flex align-items-center justify-content-between w-100" id="navbar-collapse">
         <!-- Logo -->
-        <div class="app-brand demo py-2">
-            
+        <div class="app-brand demo py-2 h-100">
+            <img class="h-100" src="<?php echo base_url('assets/img/logo.png') ?>" alt="" srcset="">
         </div>
 
         <ul class="navbar-nav flex-row align-items-center">
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="<?= base_url('user/wallet_user') ?>">
+                    <a class="dropdown-item" href="#">
                     <i class="bx bx-cog me-2"></i>
                     <span class="align-middle">Parametres</span>
                     </a>
