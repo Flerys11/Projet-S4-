@@ -16,6 +16,9 @@ CREATE TABLE users (
     poids numeric(6,3),
     wallet numeric(10,2) default 0
 );
+select count(id) as total from  users;
+
+select u.id as id_users,u.username as username, u.email as email, u.poids as poids,u.taille as taille,u.wallet as wallet, g.genre as genre from users as u join genre as g on u.id_genre = g.id; 
 
 CREATE TABLE histo_morphology (
     id int PRIMARY KEY AUTO_INCREMENT,
@@ -70,11 +73,18 @@ create table plat (
     prix numeric(8,2) not null
 );
 
+select count(id) from plat;
+
 create table sport (
     id int primary key auto_increment,
     id_type_regime int references regime_type(id),
     nom varchar(255) not null
 );
+
+select count(id) from sport;
+
+select s.id as id, s.id_type_regime as id_regime,s.nom as nom, r.type as type from sport as s join regime_type as r on s.id_type_regime = r.id; 
+-- id,id_regime,nom,type
 
 create table periode_regime (
     id int primary key auto_increment,

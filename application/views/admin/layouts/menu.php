@@ -26,7 +26,7 @@
 
         <li class="menu-item">
             <a href="<?= base_url('/') ?>" class="menu-link">
-            <div data-i18n="Analytics">Truc</div>
+            <div data-i18n="Analytics">Authentification</div>
             </a>
         </li>
 
@@ -44,7 +44,12 @@
                 </li>
                 <li class="menu-item">
                     <a href="<?php echo base_url('Aliment/get_aliment'); ?>" class="menu-link">
-                    <div data-i18n="Analytics">Aliment</div>
+                    <div data-i18n="Analytics">Régime</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="<?php echo base_url('Sport/get_all'); ?>" class="menu-link">
+                    <div data-i18n="Analytics">Sport</div>
                     </a>
                 </li>
             </ul>
@@ -53,13 +58,13 @@
         <!-- Layouts -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Layouts">Codes</div>
+            <div data-i18n="Layouts">Code</div>
             </a>
 
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="<?= base_url('/code/general-accounting') ?>" class="menu-link">
-                    <div data-i18n="Without menu">PCG</div>
+                    <div data-i18n="Without menu">Liste</div>
                     </a>
                 </li>
                 <li class="menu-item">
