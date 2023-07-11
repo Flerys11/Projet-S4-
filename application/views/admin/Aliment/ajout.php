@@ -31,7 +31,7 @@
                         <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-default-name">Type Regime</label>
                             <div class="col-sm-10">
-                                <select id="defaultSelect" class="form-select">
+                                <select name ="type" id="defaultSelect" class="form-select">
                                 <?php foreach ($d as $datas) { ?>
                                     <option  value="<?php echo $datas['id']; ?>"><?php echo $datas['type']; ?></option>
                                 <?php } ?> 

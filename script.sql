@@ -119,7 +119,7 @@ create table pourcentage_viande(
     poucentage numeric(5,2) default 0
 );
 
-select * from 
+select * from poucentage_viande join 
 
 INSERT INTO genre VALUES 
     (null, 'Homme'),

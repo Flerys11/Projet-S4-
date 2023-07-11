@@ -22,6 +22,12 @@ class AlimentAdmin extends CI_Model {
         return $query->result_array(); 
     }
 
+    public function l() {
+        $sql = "SELECT * from type_plat";
+        $query = $this->db->query($sql); 
+        return $query->fetchone(); 
+    }
+
         
      public function liste($id) {
         $sql = "SELECT * from plat where id = $id";
@@ -36,15 +42,13 @@ class AlimentAdmin extends CI_Model {
     }
 
     public function ajout_aliment($data){
-        $query="INSERT INTO plat(id_type_regime,nom,ingredients,prix) values(%s,%s,%s,%s,%s)";
-        $query = sprintf(
-            $query,
-            $this->db->escape($data['regime']),
-            $this->db->escape($data['nom']),
-            $this->db->escape($data['ingredients']),
-            $this->db->escape($data['prix'])
-        );
-        $this->db->query($query);
+        $this->db->insert('plat', $data);
+       $insert_id =$this->db->insert_id();
+       return $insert_id;
+
+    }
+    public function ajout_pourcentage($datas){
+        $this->db->insert('pourcentage_viande', $datas);
     }
 
     public function delete_Aliment($id){

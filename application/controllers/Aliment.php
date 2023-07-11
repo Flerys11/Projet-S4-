@@ -25,28 +25,35 @@ class Aliment extends CI_Controller {
 
     public function traitement_ajout(){
 
-        $vi = $this->input->post('viande');
-        $p =$this->input->post('poisson');
-        $vo =$this->input->post('volaille');
-        $total = $vi+$p+$vo;
-        var_dump($total);
 
+
+        $t = array(
+            $this->input->post('viande'),
+            $this->input->post('poisson'),
+            $this->input->post('volaille')
+        );
+
+        $total = array_sum($t);
         if($total <= 100){
             
         $data = array(
             'nom' => $this->input->post('nom'),
             'ingredients' => $this->input->post('ingredients'),
             'prix' => $this->input->post('prix'),
-            'regime' => $this->input->post('regime')
+            'id_type_regime' => $this->input->post('type')
         );
+         $id=$this->AlimentAdmin->ajout_aliment($data);
+         $i = 1;
+        for($i; $i<3; $i++){
+            $datas = array(
+                'id_plat' => $id,
+                'id_viande' =>$i,
+                'poucentage' => $t[$i]
+                
+            );
+            $this->AlimentAdmin->ajout_pourcentage($datas);
+        }
 
-        $datas = array(
-            'viande' => $vi,
-            'poisson' => $p,   
-            'volaille' => $vo
-        );
-        $this->AlimentAdmin->ajout_aliment($data);
-        $this->AlimentAdmin->ajout_pourcentage($datas);
         redirect('Aliment/get_aliment');
         }else {
             redirect('Aliment/update');

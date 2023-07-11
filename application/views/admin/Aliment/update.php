@@ -28,10 +28,10 @@
                           </div>
                         </div>
                         <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-default-name">Type Regime</label>
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Type Reg</label>
                             <div class="col-sm-10">
-                                <select id="defaultSelect" class="form-select">
-                                <?php foreach ($d as $datas) { ?>
+                                <select  name="type" id="defaultSelect" class="form-select">
+                                <?php foreach ($data as $datas) { ?>
                                     <option  value="<?php echo $datas['id']; ?>"><?php echo $datas['type']; ?></option>
                                 <?php } ?> 
                                 </select>
