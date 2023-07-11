@@ -141,7 +141,7 @@ class User extends CI_Controller {
 	public function delete_user(){
 		$id = $_GET['id'];
 		$this->UsersAdmin->deleteUser($id);
-		redirect('Users/list_user');
+		redirect('User/list_user');
     }
 
 	public function updateUser(){
@@ -152,6 +152,7 @@ class User extends CI_Controller {
 
 	public function traitement_update(){
 		$id = $_GET['id'];
+        // var_dump($id);
 
 		// $a = $this->input->post('username');
 		// $b = $this->input->post('email');
@@ -164,8 +165,10 @@ class User extends CI_Controller {
 			'taille' => $this->input->post('taille'),
 			'poids' => $this->input->post('poids')
 	);
+
+
 	$this->UsersAdmin->update_user($data,$id);
-	redirect('Users/list_user');
+	redirect('User/list_user');
 	}
 }
 ?>
