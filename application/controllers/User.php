@@ -92,9 +92,45 @@ class User extends CI_Controller {
         $this->load->view('home/wallet', $data);
     }
 
-    //--------------ADMIN
+    //--------------ADMIN--------------------
     public function wallet_user(){
-		$this->load->view('home/validation_wallet');
+        $wallet_user = $this->codeModel->code_en_attente();
+        $count_walletEnAttente = count($wallet_user);
+        if ($count_walletEnAttente == 0) {
+            $this->load->view('admin/null_validation');
+        } else{
+            foreach ($wallet_user as $wallet) {
+                $data['attente'][] = $wallet;
+                $data['username'][] = $this->codeModel->get_user_wallet($wallet->id_user);
+                $valeur = $this->codeModel->get_valeur($wallet->id_valeur);
+                $data['valeur'][] = $valeur->valeur;
+            }
+            $this->load->view('admin/validation_wallet', $data);
+        }
+        
+    }
+
+    public function validation_admin(){
+        $wallet_user = $this->codeModel->code_en_attente();
+        if (isset($_GET['id_user'])) {
+            $id_user = $_GET['id_user'];
+        }
+        if (isset($_GET['id_code'])) {
+            $id_code = $_GET['id_code'];
+        }
+        if (isset($_GET['valeur'])) {
+            $valeur = $_GET['valeur'];
+        }
+        $this->codeModel->transaction_validation($id_user, $id_code, $valeur);
+        $this->wallet_user();
+    }
+
+    public function refus_admin(){
+        if (isset($_GET['indice_valid_code'])) {
+            $indice_valid_code = $_GET['indice_valid_code'];
+            $this->codeModel->delete_validation_code($indice_valid_code);
+        }
+        $this->wallet_user();
     }
 
     public function list_user(){
