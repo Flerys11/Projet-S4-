@@ -43,23 +43,57 @@ class User extends CI_Controller {
         $this->load->view('home/profil');
     }
 
-    public function wallet(){
+    private function insertCodesIntoData(){
         $codes = $this->codeModel->get_code();
-        $data['codes'] = $codes;
         foreach ($codes as $code) {
             $data['code'][] = $code->codes;
-            $data['is_valide'][] = $code->is_valide;
+            $data['status'][] = $this->getStatus($code);
             $valeur = $this->codeModel->get_valeur($code->id_valeur);
             $data['valeur'][] = $valeur->valeur;
         }
+        return $data;
+    }
+
+    private function getStatus($code){
+        if ($this->codeModel->correspondant_code($code->codes)->is_valide == 1 && !$this->codeModel->attente_validation($code->id, $_SESSION['user_id'])) {
+            return 1;//valide
+        } elseif($this->codeModel->correspondant_code($code->codes)->is_valide == 1 && $this->codeModel->attente_validation($code->id, $_SESSION['user_id'])) {
+            return 2;//en attente
+        } else {
+            return 0;//non valide
+        }
+        
+    }
+
+    public function wallet(){
+        $data['list_codes'] = $this->insertCodesIntoData();
         $this->load->view('home/wallet', $data);
     }
 
     public function validation_user(){
 		$code = $this->input->post('code');
-        $id_code = $this->codeModel->correspondant_code($code)->id;
-        $this->codeModel->insert_validation_code($id_code, (int)$_SESSION['user_id']);
-        $this->wallet();
+        $code = trim($code);
+        if ($this->codeModel->getCountRow($code) == 0) {
+            $data['error'] = "Le code saisi n'existe pas";
+            $data['value'] = $code;
+        } else {
+            $id_code = $this->codeModel->correspondant_code($code)->id;
+            if ($this->codeModel->correspondant_code($code)->is_valide == 0) {
+                $data['error'] = "Le code saisi n'est plus valide";
+            } elseif ($this->codeModel->attente_validation($id_code, $_SESSION['user_id'])) {
+                $data['error'] = "Le code saisi est deja en attente de validation";
+            } else {
+                $this->codeModel->insert_validation_code($id_code, (int)$_SESSION['user_id']);
+            }
+        }
+        $data['list_codes'] = $this->insertCodesIntoData();
+        
+        $this->load->view('home/wallet', $data);
+    }
+
+    //--------------ADMIN
+    public function wallet_user(){
+		$this->load->view('home/validation_wallet');
     }
 }
 ?>

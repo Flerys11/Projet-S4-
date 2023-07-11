@@ -12,7 +12,7 @@ CREATE TABLE users (
     avatar varchar(255) DEFAULT 'default.jpg',
     created_at datetime NOT NULL,
     is_admin tinyint NOT NULL DEFAULT '0',
-    taille int,
+    taille numeric(3,2),
     poids numeric(6,3),
     wallet numeric(10,2) default 0
 );
@@ -42,6 +42,20 @@ CREATE TABLE validation_codes(
     id_user int REFERENCES users(id),
     is_valide int NOT NULL DEFAULT 0
 );
+
+create table imc(
+    id int primary key auto_increment,
+    libelle varchar(50) NOT NULL,
+    indice_debut numeric(6,2),
+    indice_fin numeric(6,2)
+);
+
+INSERT INTO imc values
+    (null, 'Maigreur', 0, 18.5),
+    (null, 'Normal', 18.5, 25),
+    (null, 'Surpoids', 25, 30),
+    (null, 'Obesite moderee', 30, 40),
+    (null, 'obesite severe', 40, 1000);
 
 create table regime_type(
     id int primary key auto_increment,
@@ -96,10 +110,10 @@ INSERT INTO genre VALUES
 
 INSERT INTO users VALUES 
     (null, 'Rakoto', 'rakoto@gmail.com', 1, '12345', 'default.jpg', '2023-07-02 12:05:01', 1, null, null, 5000),
-    (null, 'Rabe', 'rabe@gmail.com', 1, '56789', 'default.jpg', '2023-07-04 09:00:01', 0, 163, '80.400', 10000),
-    (null, 'Rasoa', 'rasoa@gmail.com', 2, '54321', 'default.jpg', '2023-07-05 14:25:30', 0, 160, '65.100', 9000),
-    (null, 'Rose', 'rose@gmail.com', 2, '98765', 'default.jpg', '2023-07-10 22:00:45', 0, 158, '70', 15000),
-    (null, 'Randria', 'randria@gmail.com', 1, '02580', 'default.jpg', '2023-07-10 12:20:45', 0, 170, '75.900', 25000);
+    (null, 'Rabe', 'rabe@gmail.com', 1, '56789', 'default.jpg', '2023-07-04 09:00:01', 0, 1.63, '80.400', 10000),
+    (null, 'Rasoa', 'rasoa@gmail.com', 2, '54321', 'default.jpg', '2023-07-05 14:25:30', 0, 1.60, '65.100', 9000),
+    (null, 'Rose', 'rose@gmail.com', 2, '98765', 'default.jpg', '2023-07-10 22:00:45', 0, 1.58, '70', 15000),
+    (null, 'Randria', 'randria@gmail.com', 1, '02580', 'default.jpg', '2023-07-10 12:20:45', 0, 1.70, '75.900', 25000);
 
 INSERT INTO valeur VALUES
     (null, '100'),

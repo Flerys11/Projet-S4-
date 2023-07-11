@@ -20,10 +20,39 @@ class CodeModel extends CI_Model {
         return $query->result();
 	}
 
-    public function correspondant_code($code){
+    public function attente_validation($id_code, $user_id){
+		$query = $this->db->get('validation_codes');
+        $results = $query->result(); 
+
+        foreach ($results as $row) {
+            if ($row->id_code == $id_code && $row->id_user == $user_id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function correspondant_code($code) {
         $this->db->from('codes');
-		$this->db->where('codes', $code);
-		return $this->db->get()->row();
+        $this->db->where('codes', $code);
+        $result = $this->db->get()->row();
+    
+        return $result;
+    }    
+
+    public function getCountRow($code) {
+        $this->db->from('codes');
+        $this->db->where('codes', $code);
+        $result = $this->db->get()->num_rows();
+    
+        return $result;
+    }   
+
+    public function get_id_by_codes($codes){
+        $this->db->select('id');
+        $this->db->from('codes');
+        $this->db->where('codes', $codes);
+        return $this->db->get()->row();
     }
 
     public function insert_validation_code($id_code, $id_user){
