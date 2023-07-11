@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="<?= base_url('user/wallet_user') ?>">
                     <i class="bx bx-cog me-2"></i>
                     <span class="align-middle">Parametres</span>
                     </a>

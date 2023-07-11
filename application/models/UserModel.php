@@ -30,6 +30,15 @@ class UserModel extends CI_Model {
 		$this->db->where('id', $id_user);
 		$this->db->update('users', $data);
 	}
+
+	public function insert_histo_morphology($poids, $user_id){
+		$data = array(
+			'id_user' => $user_id,
+			'poids' => $poids,
+			'updated_at' => date('Y-m-j H:i:s')
+		);
+		$this->db->insert('histo_morphology', $data);
+	}
 	
 	public function resolve_user_login($email, $password) {
 		$this->db->select('id');
