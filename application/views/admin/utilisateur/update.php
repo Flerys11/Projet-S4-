@@ -25,7 +25,7 @@
                         <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-default-company">Taille</label>
                           <div class="col-sm-10">
-                            <input type="number" name="prix" id="basic-default-company" class="form-control" value='<?php echo $data[0]['taille']; ?>'>
+                            <input type="number" name="taille" id="basic-default-company" class="form-control" value='<?php echo $data[0]['taille']; ?>'>
                           </div>
                         </div>
                         <div class="row mb-3">

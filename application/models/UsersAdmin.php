@@ -10,7 +10,8 @@ class UsersAdmin extends CI_Model {
 	}
 
     public function get_list_user() {
-        $sql = "SELECT * FROM L_users";
+        $sql = "SELECT u.id as id_users,u.username as username, u.email as email, u.poids as poids,
+        u.taille as taille,u.wallet as wallet, g.genre as genre from users as u join genre as g on u.id_genre = g.id";
         $query = $this->db->query($sql); 
         return $query->result_array(); 
    }
