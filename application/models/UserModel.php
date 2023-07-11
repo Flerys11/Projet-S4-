@@ -93,5 +93,11 @@ class UserModel extends CI_Model {
 		}
 		return false;
 	}
+
+	// public function count_user() {
+	// 	$sql = "Select count(id) as total from  users";
+	// 	$query = $this->db->query($sql); 
+	// 	return $query; 
+	// }
 	
 }
