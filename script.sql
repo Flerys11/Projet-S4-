@@ -119,6 +119,8 @@ create table pourcentage_viande(
     poucentage numeric(5,2) default 0
 );
 
+select * from 
+
 INSERT INTO genre VALUES 
     (null, 'Homme'),
     (null, 'Femme');
