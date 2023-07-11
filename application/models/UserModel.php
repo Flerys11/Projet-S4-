@@ -8,6 +8,14 @@ class UserModel extends CI_Model {
 		$this->load->database();
 		
 	}
+
+	public function calculIMC($id){
+		$user = $this->get_user($id);
+		if ($user->taille == 0) {
+			return 0;
+		}
+		return $user->poids/($user->taille*$user->taille);
+	}
 	
 	public function create_user($username, $email, $id_genre, $password, $taille, $poids) {
 		$data = array(
